@@ -33,6 +33,18 @@ Route::get('/blog', function() {
     return view('blog');
 })->name('blog');
 
+Route::get('/cookie-policy', function() {
+    return view('policies.cookie-policy');
+})->name('cookie-policy');
+
+Route::get('/privacy-policy', function() {
+    return view('policies.privacy-policy');
+})->name('privacy-policy');
+
+Route::get('/terms-of-service', function() {
+    return view('policies.terms-of-service');
+})->name('terms-of-service');
+
 Route::prefix('/analyze')->group(function () {
     Route::get('/CVAnalyzerResponse', function () {
         return view('CVAnalyzerResponse');

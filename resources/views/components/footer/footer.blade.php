@@ -6,7 +6,7 @@
             {{-- Logo --}}
             <div>
                 <a href="/" class="text-2xl font-bold text-purple-600">
-                    CareerAI
+                    AnalyseCV
                 </a>
 
                 <p class="mt-4 text-gray-600 leading-7">
@@ -25,7 +25,7 @@
 
                     <li>
                         <a href="#resume-analyzer" class="hover:text-purple-600 transition">
-                            Resume Analyzer
+                            Resume Analyser
                         </a>
                     </li>
 
@@ -35,11 +35,11 @@
                         </a>
                     </li>
 
-                    <li>
+                    {{-- <li>
                         <a href="#" class="hover:text-purple-600 transition">
                             ATS Checker
                         </a>
-                    </li>
+                    </li> --}}
 
                 </ul>
             </div>
@@ -53,20 +53,20 @@
                 <ul class="space-y-3 text-gray-600">
 
                     <li>
-                        <a href="#" class="hover:text-purple-600 transition">
-                            About
+                        <a href="{{ route('how-it-works') }}" class="hover:text-purple-600 transition">
+                            How it works
                         </a>
                     </li>
 
                     <li>
-                        <a href="#" class="hover:text-purple-600 transition">
-                            Contact
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#" class="hover:text-purple-600 transition">
+                        <a href="{{ route('blog') }}" class="hover:text-purple-600 transition">
                             Blog
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="hover:text-purple-600 transition">
+                            Contact us
                         </a>
                     </li>
 
@@ -82,19 +82,19 @@
                 <ul class="space-y-3 text-gray-600">
 
                     <li>
-                        <a href="#" class="hover:text-purple-600 transition">
+                        <a href="{{ route('privacy-policy') }}" class="hover:text-purple-600 transition">
                             Privacy Policy
                         </a>
                     </li>
 
                     <li>
-                        <a href="#" class="hover:text-purple-600 transition">
+                        <a href="{{ route('terms-of-service') }}" class="hover:text-purple-600 transition">
                             Terms of Service
                         </a>
                     </li>
 
                     <li>
-                        <a href="#" class="hover:text-purple-600 transition">
+                        <a href="{{ route('cookie-policy') }}" class="hover:text-purple-600 transition">
                             Cookie Policy
                         </a>
                     </li>
@@ -107,17 +107,17 @@
         <div class="mt-10 pt-6 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center">
 
             <p class="text-sm text-gray-500">
-                © {{ date('Y') }} CareerAI. All rights reserved.
+                © {{ date('Y') }} AnalyseCV. All rights reserved.
             </p>
 
             <div class="flex gap-6 mt-4 md:mt-0">
 
                 <a href="#" class="text-gray-500 hover:text-purple-600 transition">
-                    GitHub
+                    TikTok
                 </a>
 
                 <a href="#" class="text-gray-500 hover:text-purple-600 transition">
-                    LinkedIn
+                    Facebook
                 </a>
 
                 <a href="#" class="text-gray-500 hover:text-purple-600 transition">
