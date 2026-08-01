@@ -44,4 +44,8 @@ return [
         'id' => env('GOOGLE_ANALYTICS_ID'),
     ],
 
+    'microsoft_clarity' => [
+        'id' => env('MICROSOFT_CLARITY_ID'),
+    ],
+
 ];
