@@ -25,6 +25,10 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
+Route::get('/contact', function() {
+    return view('links.contactUs');
+})->name('contact');
+
 Route::get('/how-it-works', function() {
     return view('howItWorks');
 })->name('how-it-works');

@@ -1,3 +1,37 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+[x-cloak] {
+    display: none !important;
+}
+/* 
+body {
+    background:
+        radial-gradient(circle at top center,
+            rgba(124,83,236,.08) 0%,
+            rgba(124,83,236,.03) 25%,
+            white 60%);
+} */
+
+body {
+
+    background:
+
+        radial-gradient(
+            circle at top,
+            rgba(124,83,236,.04),
+            transparent 45%
+        ),
+
+        radial-gradient(
+            rgba(124, 83, 236, 0.08) 2px,
+            transparent 1px
+        );
+
+    background-size:
+        auto,
+        24px 24px;
+
+    background-color: white;
+}
