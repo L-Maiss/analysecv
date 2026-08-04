@@ -6,6 +6,9 @@ use Smalot\PdfParser\Parser;
 use Illuminate\Http\UploadedFile;
 // use Smalot\PdfParser\Exception\MissingPdfHeaderException;
 use PhpOffice\PhpWord\IOFactory;
+use thiagoalessio\TesseractOCR\TesseractOCR;
+use Illuminate\Support\Facades\Process;
+use Illuminate\Support\Str;
 
 class ResumeParser
 {
@@ -36,13 +39,30 @@ class ResumeParser
         // }
     }
 
+    // protected function extractPdf(UploadedFile $file): string
+    // {
+    //     $parser = new Parser();
+
+    //     return $parser
+    //         ->parseFile($file->getRealPath())
+    //         ->getText();
+    // }
+
     protected function extractPdf(UploadedFile $file): string
     {
         $parser = new Parser();
 
-        return $parser
-            ->parseFile($file->getRealPath())
-            ->getText();
+        $text = trim(
+            $parser
+                ->parseFile($file->getRealPath())
+                ->getText()
+        );
+
+        if (mb_strlen($text) >= 50) {
+            return $text;
+        }
+
+        return $this->extractPdfUsingOCR($file);
     }
 
     protected function extractDocx(UploadedFile $file): string
@@ -62,6 +82,45 @@ class ResumeParser
             }
 
         }
+
+        return trim($text);
+    }
+
+    protected function extractPdfUsingOCR(UploadedFile $file): string
+    {
+        $tempDir = storage_path('app/temp/' . Str::uuid());
+
+        if (!is_dir($tempDir)) {
+            mkdir($tempDir, 0777, true);
+        }
+
+        $result = Process::run([
+            'pdftoppm',
+            '-png',
+            $file->getRealPath(),
+            $tempDir . DIRECTORY_SEPARATOR . 'page',
+        ]);
+
+        if (!$result->successful()) {
+            throw new \RuntimeException(
+                'Unable to convert PDF pages into images. ' . $result->errorOutput()
+            );
+        }
+
+        $text = '';
+
+        foreach (glob($tempDir . DIRECTORY_SEPARATOR . '*.png') as $image) {
+
+            $text .= (new TesseractOCR($image))
+                ->lang('eng')
+                ->run();
+
+            $text .= PHP_EOL . PHP_EOL;
+
+            @unlink($image);
+        }
+
+        @rmdir($tempDir);
 
         return trim($text);
     }

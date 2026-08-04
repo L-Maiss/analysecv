@@ -1,6 +1,6 @@
-<?php
-$result = session('result');
-?>
+@php
+    $result = session('result');
+@endphp
 
 @extends('layouts.app')
 
