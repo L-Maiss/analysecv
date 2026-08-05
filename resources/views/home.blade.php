@@ -248,21 +248,59 @@
                                     class="hidden"
                                 >
 
-                                <div class="space-y-4">
+                                <div class="space-y-5">
 
                                     <div
-                                        class="flex justify-center items-center h-20 w-20 sm:h-24 sm:w-24 rounded-full bg-[#7c53ec1e] mx-auto"
+                                        id="upload-icon"
+                                        class="flex justify-center items-center h-24 w-24 rounded-full bg-[#7c53ec1e] mx-auto transition-all duration-300"
                                     >
-                                        <x-lucide-cloud-upload
-                                            class="w-10 h-10 sm:w-12 sm:h-12 text-[#7C53EC]"
-                                        />
+
+                                        <!-- Upload -->
+                                        <div id="upload-state">
+
+                                            <x-lucide-cloud-upload
+                                                class="w-12 h-12 text-[#7C53EC]"
+                                            />
+
+                                        </div>
+
+                                        <!-- Spinner -->
+                                        <div
+                                            id="loading-state"
+                                            class="hidden"
+                                        >
+
+                                            <div
+                                                class="w-10 h-10 border-4 border-[#7C53EC]/30 border-t-[#7C53EC] rounded-full animate-spin"
+                                            ></div>
+
+                                        </div>
+
+                                        <!-- Success -->
+                                        <div
+                                            id="success-state"
+                                            class="hidden"
+                                        >
+
+                                            <x-lucide-circle-check-big
+                                                class="w-14 h-14 text-green-500 animate-bounce"
+                                            />
+
+                                        </div>
+
                                     </div>
 
-                                    <h3 class="text-lg sm:text-xl font-semibold text-gray-800">
+                                    <h3
+                                        id="upload-title"
+                                        class="text-xl font-semibold text-gray-800"
+                                    >
                                         Drag & Drop your Resume
                                     </h3>
 
-                                    <p class="text-gray-500 text-sm sm:text-base">
+                                    <p
+                                        id="upload-subtitle"
+                                        class="text-gray-500"
+                                    >
                                         PDF or DOCX (Max 5 MB)
                                     </p>
 
@@ -274,10 +312,38 @@
                                         Browse Files
                                     </button>
 
-                                    <p
-                                        id="file-name"
-                                        class="text-sm text-green-600 font-medium hidden break-all"
-                                    ></p>
+                                    <div
+                                        id="uploaded-card"
+                                        class="hidden mt-6 rounded-xl border bg-[#F8F6FF] border-[#DDD2FF] p-4"
+                                    >
+
+                                        <div class="flex items-center justify-between">
+
+                                            <div>
+
+                                                <p
+                                                    id="file-name"
+                                                    class="font-semibold break-all"
+                                                ></p>
+
+                                                <p
+                                                    id="file-size"
+                                                    class="text-sm text-gray-500"
+                                                ></p>
+
+                                            </div>
+
+                                            <button
+                                                id="remove-file"
+                                                type="button"
+                                                class="text-red-500 hover:text-red-600 font-semibold cursor-pointer z-50"
+                                            >
+                                                Remove
+                                            </button>
+
+                                        </div>
+
+                                    </div>
 
                                 </div>
 
@@ -302,8 +368,10 @@
                         <div class="flex justify-center">
 
                             <button
+                                id="analyze-btn"
                                 type="submit"
-                                class="w-full sm:w-auto bg-[#7C53EC] text-white px-8 py-3 rounded-xl hover:bg-[#7145ec] transition flex justify-center items-center font-semibold"
+                                disabled
+                                class="w-full sm:w-auto bg-gray-300 text-gray-500 px-8 py-3 rounded-xl cursor-not-allowed transition flex justify-center items-center font-semibold disabled:opacity-100"
                             >
 
                                 <x-lucide-sparkles class="w-5 h-5 mr-2" />
@@ -366,21 +434,59 @@
                                     class="hidden"
                                 >
 
-                                <div class="space-y-4">
+                                <div class="space-y-5">
 
                                     <div
-                                        class="flex justify-center items-center h-20 w-20 sm:h-24 sm:w-24 rounded-full bg-[#7c53ec1e] mx-auto"
+                                        id="upload-icon2"
+                                        class="flex justify-center items-center h-24 w-24 rounded-full bg-[#7c53ec1e] mx-auto transition-all duration-300"
                                     >
-                                        <x-lucide-cloud-upload
-                                            class="w-10 h-10 sm:w-12 sm:h-12 text-[#7C53EC]"
-                                        />
+
+                                        <!-- Upload -->
+                                        <div id="upload-state2">
+
+                                            <x-lucide-cloud-upload
+                                                class="w-12 h-12 text-[#7C53EC]"
+                                            />
+
+                                        </div>
+
+                                        <!-- Loading -->
+                                        <div
+                                            id="loading-state2"
+                                            class="hidden"
+                                        >
+
+                                            <div
+                                                class="w-10 h-10 border-4 border-[#7C53EC]/30 border-t-[#7C53EC] rounded-full animate-spin"
+                                            ></div>
+
+                                        </div>
+
+                                        <!-- Success -->
+                                        <div
+                                            id="success-state2"
+                                            class="hidden"
+                                        >
+
+                                            <x-lucide-circle-check-big
+                                                class="w-14 h-14 text-green-500 animate-bounce"
+                                            />
+
+                                        </div>
+
                                     </div>
 
-                                    <h3 class="text-lg sm:text-xl font-semibold text-gray-800">
+                                    <h3
+                                        id="upload-title2"
+                                        class="text-lg sm:text-xl font-semibold text-gray-800"
+                                    >
                                         Drag & Drop your Resume
                                     </h3>
 
-                                    <p class="text-gray-500 text-sm sm:text-base">
+                                    <p
+                                        id="upload-subtitle2"
+                                        class="text-gray-500 text-sm sm:text-base"
+                                    >
                                         PDF or DOCX (Max 5 MB)
                                     </p>
 
@@ -392,10 +498,38 @@
                                         Browse Files
                                     </button>
 
-                                    <p
-                                        id="file-name2"
-                                        class="text-sm text-green-600 font-medium hidden break-all"
-                                    ></p>
+                                    <div
+                                        id="uploaded-card2"
+                                        class="hidden mt-6 rounded-xl border bg-[#F8F6FF] border-[#DDD2FF] p-4"
+                                    >
+
+                                        <div class="flex items-center justify-between">
+
+                                            <div>
+
+                                                <p
+                                                    id="file-name2"
+                                                    class="font-semibold break-all"
+                                                ></p>
+
+                                                <p
+                                                    id="file-size2"
+                                                    class="text-sm text-gray-500"
+                                                ></p>
+
+                                            </div>
+
+                                            <button
+                                                id="remove-file2"
+                                                type="button"
+                                                class="text-red-500 hover:text-red-600 font-semibold"
+                                            >
+                                                Remove
+                                            </button>
+
+                                        </div>
+
+                                    </div>
 
                                 </div>
 
@@ -429,9 +563,11 @@
 
                             <textarea
                                 name="job_description"
+                                id="job-description"
                                 rows="6"
                                 class="w-full rounded-2xl border border-gray-300 p-4 sm:p-5 focus:ring-2 focus:ring-[#7C53EC] focus:border-[#7C53EC] outline-none resize-y text-sm sm:text-base"
                                 placeholder="Paste the job description here..."
+                                required
                             ></textarea>
 
                         </div>
@@ -441,8 +577,10 @@
                         <div class="flex justify-center">
 
                             <button
+                                id="comparison-btn"
                                 type="submit"
-                                class="w-full sm:w-auto bg-[#7C53EC] text-white px-8 py-3 rounded-xl hover:bg-[#7145ec] transition flex justify-center items-center font-semibold"
+                                disabled
+                                class="w-full sm:w-auto bg-gray-300 text-gray-500 px-8 py-3 rounded-xl cursor-not-allowed transition-all duration-300 flex justify-center items-center font-semibold disabled:opacity-100"
                             >
 
                                 <x-lucide-sparkles class="w-5 h-5 mr-2" />

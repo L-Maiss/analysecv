@@ -56,6 +56,11 @@
             const fileInput = document.getElementById('resume');
             const browseBtn = document.getElementById('browse-btn');
             const fileName = document.getElementById('file-name');
+            const analyzeBtn = document.getElementById("analyze-btn");
+            const comparisonBtn = document.getElementById("comparison-btn");
+            const jobDescription = document.getElementById("job-description");
+
+            let uploaded = false;
 
             // Open file picker
             browseBtn.addEventListener('click', (e) => {
@@ -64,8 +69,20 @@
             });
 
             // Clicking anywhere in the drop zone opens the file picker
-            dropZone.addEventListener('click', () => {
+            dropZone.addEventListener('click', (e) => {
+
+                if (uploaded) {
+
+                    // Allow clicking Remove button
+                    if (e.target.closest('#remove-file')) {
+                        return;
+                    }
+
+                    return;
+                }
+
                 fileInput.click();
+
             });
 
             // File selected through file picker
@@ -75,8 +92,13 @@
 
             // Drag enters the drop zone
             dropZone.addEventListener('dragover', (e) => {
+
+                if (uploaded) return;
+
                 e.preventDefault();
+
                 dropZone.classList.add('dragover');
+
             });
 
             // Drag leaves the drop zone
@@ -86,6 +108,9 @@
 
             // File dropped
             dropZone.addEventListener('drop', (e) => {
+
+                if (uploaded) return;
+
                 e.preventDefault();
 
                 dropZone.classList.remove('dragover');
@@ -94,17 +119,80 @@
                     fileInput.files = e.dataTransfer.files;
                     updateFileName(fileInput.files);
                 }
+
             });
 
             function updateFileName(files) {
-                if (files.length === 0) {
-                    fileName.textContent = '';
-                    fileName.style.display = 'none';
-                    return;
-                }
 
-                fileName.textContent = `Selected: ${files[0].name}`;
-                fileName.style.display = 'block';
+                if (!files.length) return;
+
+                const file = files[0];
+
+                const uploadState = document.getElementById("upload-state");
+                const loadingState = document.getElementById("loading-state");
+                const successState = document.getElementById("success-state");
+
+                const title = document.getElementById("upload-title");
+                const subtitle = document.getElementById("upload-subtitle");
+
+                const browse = document.getElementById("browse-btn");
+
+                const card = document.getElementById("uploaded-card");
+
+                const name = document.getElementById("file-name");
+                const size = document.getElementById("file-size");
+
+                uploadState.classList.add("hidden");
+                loadingState.classList.remove("hidden");
+
+                title.innerHTML = "Uploading...";
+                subtitle.innerHTML = "Please wait";
+
+                setTimeout(() => {
+
+                    loadingState.classList.add("hidden");
+                    successState.classList.remove("hidden");
+
+                    title.innerHTML = "Resume Uploaded";
+                    subtitle.innerHTML = "Ready for analysis";
+
+                    browse.classList.add("hidden");
+
+                    name.textContent = file.name;
+                    size.textContent =
+                        `${(file.size / 1024 / 1024).toFixed(2)} MB`;
+
+                    card.classList.remove("hidden");
+
+                    uploaded = true;
+
+                    analyzeBtn.disabled = false;
+
+                    analyzeBtn.classList.remove(
+                        "bg-gray-300",
+                        "text-gray-500",
+                        "cursor-not-allowed"
+                    );
+
+                    analyzeBtn.classList.add(
+                        "bg-[#7C53EC]",
+                        "text-white",
+                        "hover:bg-[#7145ec]"
+                    );
+
+                    dropZone.classList.add("border-green-400","bg-green-50");
+                    dropZone.classList.remove(
+                        "hover:border-[#7C53EC]",
+                        "hover:bg-[#7c53ec0d]",
+                        "cursor-pointer"
+                    );
+
+                    dropZone.classList.add(
+                        "cursor-default"
+                    );
+
+                },700);
+
             }
 
             // ----------------------------
@@ -114,6 +202,8 @@
             const browseBtn2 = document.getElementById('browse-btn2');
             const fileName2 = document.getElementById('file-name2');
 
+            let uploaded2 = false;
+
             // Open file picker
             browseBtn2.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -121,8 +211,19 @@
             });
 
             // Clicking anywhere in the drop zone opens the file picker
-            dropZone2.addEventListener('click', () => {
+            dropZone2.addEventListener('click', (e) => {
+
+                if (uploaded2) {
+
+                    if (e.target.closest('#remove-file2')) {
+                        return;
+                    }
+
+                    return;
+                }
+
                 fileInput2.click();
+
             });
 
             // File selected through file picker
@@ -132,74 +233,248 @@
 
             // Drag enters the drop zone
             dropZone2.addEventListener('dragover', (e) => {
+
+                if (uploaded2) return;
+
                 e.preventDefault();
+
                 dropZone2.classList.add('dragover');
+
             });
 
             // Drag leaves the drop zone
             dropZone2.addEventListener('dragleave', () => {
+
+                if (uploaded2) return;
+
                 dropZone2.classList.remove('dragover');
+
             });
 
             // File dropped
             dropZone2.addEventListener('drop', (e) => {
+
+                if (uploaded2) return;
+
                 e.preventDefault();
 
                 dropZone2.classList.remove('dragover');
 
                 if (e.dataTransfer.files.length > 0) {
+
                     fileInput2.files = e.dataTransfer.files;
+
                     updateFileName2(fileInput2.files);
+
                 }
+
             });
 
             function updateFileName2(files) {
-                if (files.length === 0) {
-                    fileName2.textContent = '';
-                    fileName2.style.display = 'none';
-                    return;
-                }
 
-                fileName2.textContent = `Selected: ${files[0].name}`;
-                fileName2.style.display = 'block';
+                if (!files.length) return;
+
+                const file = files[0];
+
+                const uploadState = document.getElementById("upload-state2");
+                const loadingState = document.getElementById("loading-state2");
+                const successState = document.getElementById("success-state2");
+
+                const title = document.getElementById("upload-title2");
+                const subtitle = document.getElementById("upload-subtitle2");
+
+                const browse = document.getElementById("browse-btn2");
+
+                const card = document.getElementById("uploaded-card2");
+
+                const name = document.getElementById("file-name2");
+                const size = document.getElementById("file-size2");
+
+                uploadState.classList.add("hidden");
+                loadingState.classList.remove("hidden");
+
+                title.innerHTML = "Uploading...";
+                subtitle.innerHTML = "Please wait";
+
+                setTimeout(() => {
+
+                    loadingState.classList.add("hidden");
+                    successState.classList.remove("hidden");
+
+                    title.innerHTML = "Resume Uploaded";
+                    subtitle.innerHTML = "Ready for comparison";
+
+                    browse.classList.add("hidden");
+
+                    name.textContent = file.name;
+                    size.textContent =
+                        `${(file.size / 1024 / 1024).toFixed(2)} MB`;
+
+                    card.classList.remove("hidden");
+
+                    uploaded2 = true;
+
+                    updateComparisonButton();
+
+                    dropZone2.classList.remove(
+                        "hover:border-[#7C53EC]",
+                        "hover:bg-[#7c53ec0d]",
+                        "cursor-pointer"
+                    );
+
+                    dropZone2.classList.add(
+                        "cursor-default",
+                        "border-green-400",
+                        "bg-green-50"
+                    );
+
+                }, 700);
+
             }
 
+            document
+            .getElementById("remove-file2")
+            .addEventListener("click", function(e){
 
-            // ---------------------------
+                e.preventDefault();
+                e.stopPropagation();
 
-        //     const form = document.querySelector("form");
-        //     const overlay = document.getElementById("loading-overlay");
-        //     const loadingText = document.getElementById("loading-text");
+                uploaded2 = false;
 
-        //     const texts = [
-        //         "Uploading your resume...",
-        //         "Reading your resume...",
-        //         "Comparing with the job description...",
-        //         "Calculating ATS score...",
-        //         "Generating suggestions...",
-        //         "Preparing your report..."
-        //     ];
+                updateComparisonButton();
 
-        //     form.addEventListener("submit", function () {
+                fileInput2.value = "";
 
-        //         overlay.classList.remove("hidden");
+                document.getElementById("uploaded-card2").classList.add("hidden");
 
-        //         let index = 0;
+                document.getElementById("success-state2").classList.add("hidden");
 
-        //         const interval = setInterval(() => {
+                document.getElementById("loading-state2").classList.add("hidden");
 
-        //             index++;
+                document.getElementById("upload-state2").classList.remove("hidden");
 
-        //             if (index >= texts.length) {
-        //                 clearInterval(interval);
-        //                 return;
-        //             }
+                document.getElementById("browse-btn2").classList.remove("hidden");
 
-        //             loadingText.textContent = texts[index];
+                document.getElementById("upload-title2").innerHTML =
+                    "Drag & Drop your Resume";
 
-        //         }, 2500);
+                document.getElementById("upload-subtitle2").innerHTML =
+                    "PDF or DOCX (Max 5 MB)";
 
-        //     });
+                dropZone2.classList.remove(
+                    "border-green-400",
+                    "bg-green-50",
+                    "cursor-default"
+                );
+
+                dropZone2.classList.add(
+                    "hover:border-[#7C53EC]",
+                    "hover:bg-[#7c53ec0d]",
+                    "cursor-pointer"
+                );
+
+            });
+
+
+            document
+            .getElementById("remove-file")
+            .addEventListener("click", function(e){
+
+                e.preventDefault();
+                e.stopPropagation();
+
+                uploaded = false;
+
+                analyzeBtn.disabled = true;
+
+                analyzeBtn.classList.remove(
+                    "bg-[#7C53EC]",
+                    "text-white",
+                    "hover:bg-[#7145ec]"
+                );
+
+                analyzeBtn.classList.add(
+                    "bg-gray-300",
+                    "text-gray-500",
+                    "cursor-not-allowed"
+                );
+
+                fileInput.value = "";
+
+                document.getElementById("uploaded-card").classList.add("hidden");
+
+                document.getElementById("success-state").classList.add("hidden");
+
+                document.getElementById("loading-state").classList.add("hidden");
+
+                document.getElementById("upload-state").classList.remove("hidden");
+
+                document.getElementById("browse-btn").classList.remove("hidden");
+
+                document.getElementById("upload-title").innerHTML =
+                    "Drag & Drop your Resume";
+
+                document.getElementById("upload-subtitle").innerHTML =
+                    "PDF or DOCX (Max 5 MB)";
+
+                dropZone.classList.remove("border-green-400","bg-green-50");
+
+                dropZone.classList.add(
+                    "hover:border-[#7C53EC]",
+                    "hover:bg-[#7c53ec0d]",
+                    "cursor-pointer"
+                );
+
+                dropZone.classList.remove(
+                    "cursor-default"
+                );
+
+            });
+
+            function updateComparisonButton() {
+
+    const hasResume = uploaded2;
+
+    const hasJobDescription =
+        jobDescription.value.trim().length > 0;
+
+    if (hasResume && hasJobDescription) {
+
+        comparisonBtn.disabled = false;
+
+        comparisonBtn.classList.remove(
+            "bg-gray-300",
+            "text-gray-500",
+            "cursor-not-allowed"
+        );
+
+        comparisonBtn.classList.add(
+            "bg-[#7C53EC]",
+            "text-white",
+            "hover:bg-[#7145ec]"
+        );
+
+    } else {
+
+        comparisonBtn.disabled = true;
+
+        comparisonBtn.classList.remove(
+            "bg-[#7C53EC]",
+            "text-white",
+            "hover:bg-[#7145ec]"
+        );
+
+        comparisonBtn.classList.add(
+            "bg-gray-300",
+            "text-gray-500",
+            "cursor-not-allowed"
+        );
+
+    }
+
+}
+
+jobDescription.addEventListener("input", updateComparisonButton);
 
         });
     </script>
