@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.landing')
 
     @push('styles')
         @vite('resources/css/upload.css')

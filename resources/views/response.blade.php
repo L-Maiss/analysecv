@@ -2,7 +2,7 @@
 $result = session('result');
 ?>
 
-@extends('layouts.app')
+@extends('layouts.landing')
 
 @section('content')
 
