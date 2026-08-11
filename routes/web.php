@@ -4,6 +4,14 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\CVAnalyserController;
+use App\Http\Controllers\GoogleController;
+
+Route::get('/auth/google', [GoogleController::class, 'redirect'])
+    ->name('google.login');
+
+Route::get('/auth/google/callback', [GoogleController::class, 'callback']);
+
+// -------------------------
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -22,6 +30,10 @@ Route::middleware('auth')->group(function () {
 Route::get('/', function () {
     return view('home');
 })->name('home');
+
+Route::get('/pricing', function() {
+    return view('pricing');
+})->name('pricing');
 
 Route::get('/contact', function() {
     return view('links.contactUs');

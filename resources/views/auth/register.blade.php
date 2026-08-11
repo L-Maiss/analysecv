@@ -1,4 +1,23 @@
 <x-guest-layout>
+
+    <a
+    href="{{ route('google.login') }}"
+    class="w-full flex items-center justify-center gap-3 rounded-lg border border-gray-300 bg-white px-4 py-3 hover:bg-gray-50 transition"
+    >
+        <img
+            src="https://www.svgrepo.com/show/475656/google-color.svg"
+            class="w-5 h-5"
+        >
+
+        Continue with Google
+    </a>
+
+    <div class="flex items-center justify-center my-4">
+        <span class="border-b border-gray-300 w-full"></span>
+        <span class="mx-2 text-gray-500">or</span>
+        <span class="border-b border-gray-300 w-full"></span>
+    </div>
+
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
