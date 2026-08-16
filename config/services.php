@@ -54,4 +54,9 @@ return [
         'redirect' => env('GOOGLE_REDIRECT_URI'),
     ],
 
+    'paddle' => [
+        'premium_price_id' => env('PADDLE_PREMIUM_PRICE_ID'),
+        'single_analysis_price_id' => env('PADDLE_SINGLE_ANALYSIS_PRICE_ID'),
+    ],
+
 ];

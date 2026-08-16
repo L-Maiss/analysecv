@@ -5,6 +5,16 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\CVAnalyserController;
 use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\BillingController;
+
+Route::middleware('auth')->group(function () {
+    Route::post('/billing/subscribe', [BillingController::class, 'subscribe'])
+        ->name('billing.subscribe');
+});
+
+Route::get('/pricing', [BillingController::class, 'view'])->name('pricing');
+
+// -------------------------
 
 Route::get('/auth/google', [GoogleController::class, 'redirect'])
     ->name('google.login');
@@ -30,10 +40,6 @@ Route::middleware('auth')->group(function () {
 Route::get('/', function () {
     return view('home');
 })->name('home');
-
-Route::get('/pricing', function() {
-    return view('pricing');
-})->name('pricing');
 
 Route::get('/contact', function() {
     return view('links.contactUs');

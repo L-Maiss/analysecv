@@ -146,11 +146,11 @@
                     <span class="text-5xl font-extrabold">$0</span>
                     <span class="text-gray-500">Forever</span>
                 </div>
-
+{{-- 
                 <a href="{{ route('register') }}"
                    class="mt-8 block w-full rounded-xl border border-gray-300 py-3 text-center font-semibold hover:bg-gray-100 transition">
                     Get Started
-                </a>
+                </a> --}}
 
                 <ul class="mt-8 space-y-4">
 
@@ -202,10 +202,27 @@
                     <span class="text-blue-200">/month</span>
                 </div>
 
-                <a href="#"
+                {{-- <a href="#"
                    class="mt-8 block w-full rounded-xl bg-white text-blue-700 py-3 text-center font-bold hover:bg-gray-100 transition">
                     Upgrade to Pro
-                </a>
+                </a> --}}
+
+                @if(auth()->check())
+                    <form method="POST" action="{{ route('billing.subscribe') }}">
+                        @csrf
+
+                        <button
+                            type="submit"
+                            class="mt-8 block w-full rounded-xl bg-white text-blue-700 py-3 text-center font-bold hover:bg-gray-100 transition">
+                            Upgrade to Pro
+                        </button>
+                    </form>
+                @else
+                    <a href="{{ route('login') }}" class="mt-8 block w-full rounded-xl bg-white text-blue-700 py-3 text-center font-bold hover:bg-gray-100 transition">
+                        Upgrade to Pro
+                    </a>
+                @endif
+
 
                 <ul class="mt-8 space-y-4">
 
