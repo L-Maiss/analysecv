@@ -36,7 +36,7 @@
     </div>
 
     <!-- Steps -->
-
+    <div class="hidden lg:block">
     <div
         class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 mt-16 mb-10">
 
@@ -149,6 +149,7 @@
         </div>
 
     </div>
+    </div>
 
     @if ($errors->any())
         <div
@@ -186,7 +187,7 @@
                         <x-lucide-file-text
                             class="w-5 h-5 mr-2" />
 
-                        Resume Analyzer
+                        Resume Analyser
 
                     </button>
 
@@ -217,7 +218,7 @@
                 >
 
                     <h2 class="text-2xl sm:text-3xl font-bold mb-3">
-                        Analyze Your Resume
+                        Analyse Your Resume
                     </h2>
 
                     <p class="text-gray-500 mb-8 text-sm sm:text-base">
@@ -376,7 +377,7 @@
 
                                 <x-lucide-sparkles class="w-5 h-5 mr-2" />
 
-                                Analyze Resume
+                                Analyse Resume
 
                                 <x-lucide-chevron-right class="w-5 h-5 ml-2" />
 

@@ -25,6 +25,8 @@ class BillingController extends Controller
                 ->returnTo(route('dashboard'));
         }
 
+        $priceId = config('services.paddle.premium_price_id');
+
         $checkout = $request->user()
             ->subscribe(
                 'default',
@@ -32,7 +34,7 @@ class BillingController extends Controller
             )
             ->returnTo(route('dashboard'));
 
-        return view('billing.checkout', compact('checkout'));
+        return view('billing.checkout', compact('checkout', 'priceId'));
     }
     
 }
