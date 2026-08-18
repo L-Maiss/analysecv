@@ -267,20 +267,8 @@
 
             <div class="flex items-center gap-5">
 
-                <a
-                    href="{{ route('privacy-policy') }}"
-                    class="text-sm text-gray-500 hover:text-[#7C53EC]">
-
-                    Privacy
-
-                </a>
-
-                <a
-                    href="{{ route('terms-of-service') }}"
-                    class="text-sm text-gray-500 hover:text-[#7C53EC]">
-
-                    Terms
-
+                <a>
+                    Created by <span class="text-[#7C53EC] font-semibold">Luka Maisuradze</span>
                 </a>
 
             </div>
