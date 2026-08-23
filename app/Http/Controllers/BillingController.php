@@ -13,17 +13,17 @@ class BillingController extends Controller
     }
     public function subscribe(Request $request)
     {
-        if ($request->user()) {
-            $checkout = $request->user()
-                ->checkout(config('services.paddle.premium_price_id'))
-                ->returnTo(route('dashboard'));
-        } 
+        // if ($request->user()) {
+        //     $checkout = $request->user()
+        //         ->checkout(config('services.paddle.premium_price_id'))
+        //         ->returnTo(route('dashboard'));
+        // } 
         
-        if ($request->user()) {
-            $checkout = $request->user()
-                ->checkout(config('services.single_analysis_price_id'))
-                ->returnTo(route('dashboard'));
-        }
+        // if ($request->user()) {
+        //     $checkout = $request->user()
+        //         ->checkout(config('services.single_analysis_price_id'))
+        //         ->returnTo(route('dashboard'));
+        // }
 
         $priceId = config('services.paddle.premium_price_id');
 
