@@ -22,4 +22,13 @@ class PremiumCredit extends Model
     {
         return max(0, $this->credits - $this->used);
     }
+
+    public function consume(): void
+    {
+        if ($this->remaining() <= 0) {
+            throw new \RuntimeException('No premium credits remaining.');
+        }
+
+        $this->increment('used');
+    }
 }

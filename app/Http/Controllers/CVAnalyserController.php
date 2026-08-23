@@ -23,11 +23,10 @@ class CVAnalyserController extends Controller
         } catch (\RuntimeException $e) {
 
             return back()
-            ->withInput()
-            ->withErrors([
-                'resume' => $e->getMessage(),
-            ]);
-            
+                ->withInput()
+                ->withErrors([
+                    'resume' => $e->getMessage(),
+                ]);
         }
 
         if (empty(trim($resumeText))) {
@@ -38,13 +37,40 @@ class CVAnalyserController extends Controller
                 ]);
         }
 
+        /*
+        |--------------------------------------------------------------------------
+        | Determine analysis level
+        |--------------------------------------------------------------------------
+        */
+
+        $user = $request->user();
+
+        $hasPremiumSubscription = $user?->hasActivePremiumSubscription() ?? false;
+
+        $hasPremiumCredits = ($user?->availablePremiumCredits() ?? 0) > 0;
+
+        $isPremium = $hasPremiumSubscription || $hasPremiumCredits;
+
         try {
+            $result = $analyser->analyze(
+                $resumeText,
+                $isPremium
+            );
 
-            $result = $analyser->analyze($resumeText);
+            if (
+                $user &&
+                !$hasPremiumSubscription &&
+                $hasPremiumCredits
+            ) {
+                $user->consumePremiumCredit();
+            }
 
-            // return view('response', compact('result'));
-            // return redirect()->route('CVAnalyzerResponse')->with('result', $result);
-            return redirect()->route('CVAnalyzer.response')->with('result', $result);
+            return redirect()
+                ->route('CVAnalyzer.response')
+                ->with([
+                    'result' => $result,
+                    'isPremium' => $isPremium,
+                ]);
 
         } catch (\Throwable $e) {
 

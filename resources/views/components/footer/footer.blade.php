@@ -52,7 +52,7 @@
                                     href="{{ route('home') }}"
                                     class="hover:text-[#7C53EC] transition">
 
-                                    Resume Analyzer
+                                    Resume Analyser
 
                                 </a>
 

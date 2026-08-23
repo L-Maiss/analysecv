@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Paddle\Billable;
 use App\Models\PremiumCredit;
+use Illuminate\Support\Facades\DB;
 
 #[Fillable(['name', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]
@@ -52,6 +53,23 @@ class User extends Authenticatable
     {
         return $this->premiumCredits()->get()->sum(function (PremiumCredit $credit) {
             return $credit->remaining();
+        });
+    }
+
+    public function consumePremiumCredit(): void
+    {
+        DB::transaction(function () {
+            $credit = $this->premiumCredits()
+                ->whereColumn('used', '<', 'credits')
+                ->orderBy('created_at')
+                ->lockForUpdate()
+                ->first();
+
+            if (!$credit) {
+                throw new \RuntimeException('No premium credits remaining.');
+            }
+
+            $credit->consume();
         });
     }
 

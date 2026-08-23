@@ -10,6 +10,9 @@ use App\Http\Controllers\BillingController;
 Route::middleware('auth')->group(function () {
     Route::post('/billing/subscribe', [BillingController::class, 'subscribe'])
         ->name('billing.subscribe');
+        
+    Route::post('/billing/buy-credits', [BillingController::class, 'buyCredits'])
+        ->name('billing.buy-credits');
 });
 
 Route::get('/pricing', [BillingController::class, 'view'])->name('pricing');

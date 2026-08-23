@@ -8,7 +8,7 @@
     <section class="text-center max-w-4xl mx-auto">
 
         <span class="inline-flex items-center rounded-full bg-purple-100 px-4 py-2 text-sm font-medium text-purple-700">
-            📄 How CareerAI Works
+            📄 How AnalyseCV Works
         </span>
 
         <h1 class="mt-6 text-5xl font-bold text-gray-900">
@@ -16,7 +16,7 @@
         </h1>
 
         <p class="mt-6 text-xl text-gray-600 leading-8">
-            CareerAI helps you analyze your resume, discover weaknesses,
+            AnalyseCV helps you analyse your resume, discover weaknesses,
             improve your ATS score, and prepare for your next job application—
             all in just a few minutes.
         </p>
@@ -44,7 +44,7 @@
 
                 <p class="text-gray-600 leading-7">
                     Upload your resume in PDF format.
-                    CareerAI securely extracts the content
+                    AnalyseCV securely extracts the content
                     and prepares it for AI analysis.
                 </p>
 
@@ -94,11 +94,11 @@
     <section class="mt-24 bg-white rounded-3xl shadow-lg border p-10">
 
         <h2 class="text-3xl font-bold mb-8">
-            📑 Resume Analyzer
+            📑 Resume Analyser
         </h2>
 
         <p class="text-gray-600 leading-8 mb-10">
-            The Resume Analyzer helps you understand how recruiters and Applicant
+            The Resume Analyser helps you understand how recruiters and Applicant
             Tracking Systems (ATS) may evaluate your resume.
         </p>
 
@@ -155,7 +155,7 @@
 
             Upload your resume and paste a job description.
 
-            CareerAI compares both documents to show how well
+            AnalyseCV compares both documents to show how well
             your profile matches the position.
 
         </p>
@@ -241,7 +241,7 @@
                 </h3>
 
                 <p class="mt-3 text-gray-600">
-                    Currently PDF.
+                    Currently PDF and DOCX.
                 </p>
             </div>
 
@@ -251,18 +251,17 @@
                 </h3>
 
                 <p class="mt-3 text-gray-600">
-                    No. You can start analyzing your resume immediately.
+                    No. You can start analysing your resume immediately.
                 </p>
             </div>
 
             <div class="bg-white rounded-xl shadow border p-6">
                 <h3 class="font-semibold text-lg">
-                    Is CareerAI free?
+                    Is AnalyseCV free?
                 </h3>
 
                 <p class="mt-3 text-gray-600">
-                    Yes, core features are free. Premium tools and advanced reports
-                    may require payment in the future.
+                    Yes, core features are free. Premium tools and advanced reports require payment.
                 </p>
             </div>
 
@@ -284,7 +283,7 @@
 
         <a href="{{ route('home') }}"
            class="inline-flex items-center mt-8 rounded-xl bg-white px-8 py-4 font-semibold text-purple-700 hover:bg-gray-100 transition">
-            Analyze My Resume →
+            Analyse My Resume →
         </a>
 
     </div>
