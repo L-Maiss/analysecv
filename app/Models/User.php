@@ -30,4 +30,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function hasActivePremiumSubscription(): bool
+    {
+        return $this->subscribed('default');
+    }
+
 }
