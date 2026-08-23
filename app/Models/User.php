@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Paddle\Billable;
+use App\Models\PremiumCredit;
 
 #[Fillable(['name', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]
@@ -34,6 +35,24 @@ class User extends Authenticatable
     public function hasActivePremiumSubscription(): bool
     {
         return $this->subscribed('default');
+    }
+
+    public function canUsePremiumAnalysis(): bool
+    {
+        return $this->hasActivePremiumSubscription()
+            || $this->availablePremiumCredits() > 0;
+    }
+
+    public function premiumCredits()
+    {
+        return $this->hasMany(PremiumCredit::class);
+    }
+
+    public function availablePremiumCredits(): int
+    {
+        return $this->premiumCredits()->get()->sum(function (PremiumCredit $credit) {
+            return $credit->remaining();
+        });
     }
 
 }

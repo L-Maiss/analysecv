@@ -8,11 +8,8 @@ use Illuminate\Http\Request;
 
 class CVAnalyserController extends Controller
 {
-    public function analyze(
-        Request $request,
-        ResumeParser $parser,
-        CVAnalyserService $analyser
-    ) {
+    public function analyze(Request $request, ResumeParser $parser, CVAnalyserService $analyser) 
+    {
         $request->validate([
             'resume' => 'required|mimes:pdf,doc,docx|max:5120',
         ]);
@@ -24,7 +21,6 @@ class CVAnalyserController extends Controller
             );
 
         } catch (\RuntimeException $e) {
-            dd($e->getMessage());
 
             return back()
             ->withInput()
